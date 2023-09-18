@@ -16,7 +16,7 @@ const Image = ({
   return (
     <div
       className={`h-full w-full flex-grow object-contain bg-cover bg-no-repeat ${
-        border && "border-4 border-brand"
+        border && "border-8 border-brand"
       } ${parallax && "bg-fixed"} ${className}`}
       style={{
         backgroundImage: `url(${imgSrc})`,
