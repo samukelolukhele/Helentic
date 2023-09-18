@@ -8,7 +8,7 @@ export default {
       },
       fontFamily: {
         logo: ["Permanent Marker", "cursive"],
-        header: ["Archivo Black", "sans-serif"],
+        header: ["Anton", "sans-serif"],
         base: ["Roboto", "sans-serif"],
       },
     },

@@ -1,5 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Archivo+Black:regular);
 @import url(https://fonts.googleapis.com/css?family=Permanent+Marker:regular);
+@import url(https://fonts.googleapis.com/css?family=Anton:regular);
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 
 @tailwind base;
@@ -20,12 +20,16 @@ body {
 }
 
 h1 {
-  @apply font-header text-lg;
+  @apply font-header;
+}
+
+span {
+  @apply font-logo;
 }
 
 @layer utilities {
   .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 40px;
   }
