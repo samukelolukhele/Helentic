@@ -6,6 +6,11 @@ export default {
       colors: {
         brand: "#E74949",
       },
+      fontFamily: {
+        logo: ["Permanent Marker", "cursive"],
+        header: ["Archivo Black", "sans-serif"],
+        base: ["Roboto", "sans-serif"],
+      },
     },
   },
   plugins: [],
