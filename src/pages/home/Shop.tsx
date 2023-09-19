@@ -1,4 +1,3 @@
-import React from "react";
 import Section from "../../components/Section";
 import Container from "../../components/Container";
 import { BsCaretDown, BsFilter } from "react-icons/bs";

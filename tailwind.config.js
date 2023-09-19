@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         brand: "#E74949",
+        background: "#242424",
       },
       fontFamily: {
         logo: ["Permanent Marker", "cursive"],

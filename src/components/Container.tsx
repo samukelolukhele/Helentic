@@ -20,7 +20,7 @@ const Container = ({
 
   return (
     <div
-      className={`${
+      className={`mx-[2rem] md:mx-auto ${
         containerType == "base" ? "container" : "nav-container"
       } flex ${
         flexType == "center"
