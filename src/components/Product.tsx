@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "./Card";
 import Image from "./Image";
 
@@ -12,6 +13,15 @@ type PProps = {
 
 const Product = (props: PProps) => {
   const { title, thumbnail, images, price, category, tags } = props;
+  const [currentThumbnail, setCurrentThumbnail] = useState(thumbnail);
+
+  function handleThumbnail(thumbnailChange: string) {
+    if (currentThumbnail == thumbnailChange) {
+      return setCurrentThumbnail(thumbnail);
+    } else if (currentThumbnail !== thumbnailChange) {
+      return setCurrentThumbnail(thumbnailChange);
+    }
+  }
 
   return (
     <Card
@@ -20,7 +30,7 @@ const Product = (props: PProps) => {
     >
       <Image
         className="w-full flex-grow-0 !h-fit aspect-square"
-        imgSrc={thumbnail}
+        imgSrc={currentThumbnail}
       />
 
       <div className="flex items-center justify-center w-full gap-4">
@@ -28,9 +38,12 @@ const Product = (props: PProps) => {
           images.map((image, key) => {
             return (
               <Image
-                className="!flex-grow-0 !w-[45px] !h-[45px] cursor-pointer"
+                className={`!flex-grow-0 !w-[45px] !h-[45px] cursor-pointer rounded-sm ease-in duration-300 hover:scale-110 ${
+                  image == currentThumbnail && "scale-110 border-brand border-4"
+                }`}
                 imgSrc={image}
                 key={key}
+                onClick={() => handleThumbnail(images[key])}
               />
             );
           })}

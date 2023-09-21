@@ -15,7 +15,6 @@ const products = [
     images: [
       "https://ae01.alicdn.com/kf/Sa733bca0336a4593a2a4d6ca6844093f8/1-piece-Size-3-6mm-9mm-Men-s-Necklace-Stainless-Steel-Cuban-Link-Chain-Bracelet-Necklace.jpg_220x220.jpg_.webp",
       "https://ae01.alicdn.com/kf/H048d0a574864415ebb085219260068f7m/1-piece-Size-3-6mm-9mm-Men-s-Necklace-Stainless-Steel-Cuban-Link-Chain-Bracelet-Necklace.jpg_220x220.jpg_.webp",
-      "https://ae01.alicdn.com/kf/Sa733bca0336a4593a2a4d6ca6844093f8/1-piece-Size-3-6mm-9mm-Men-s-Necklace-Stainless-Steel-Cuban-Link-Chain-Bracelet-Necklace.jpg_220x220.jpg_.webp",
     ],
   },
   {
