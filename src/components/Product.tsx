@@ -16,11 +16,9 @@ const Product = (props: PProps) => {
   const [currentThumbnail, setCurrentThumbnail] = useState(thumbnail);
 
   function handleThumbnail(thumbnailChange: string) {
-    if (currentThumbnail == thumbnailChange) {
-      return setCurrentThumbnail(thumbnail);
-    } else if (currentThumbnail !== thumbnailChange) {
-      return setCurrentThumbnail(thumbnailChange);
-    }
+    return currentThumbnail === thumbnailChange
+      ? setCurrentThumbnail(thumbnail)
+      : setCurrentThumbnail(thumbnailChange);
   }
 
   return (
@@ -38,7 +36,7 @@ const Product = (props: PProps) => {
           images.map((image, key) => {
             return (
               <Image
-                className={`!flex-grow-0 !w-[45px] !h-[45px] cursor-pointer rounded-sm ease-in duration-300 hover:scale-110 ${
+                className={`!flex-grow-0 w-[65px] h-[65px] cursor-pointer rounded-sm ease-in duration-300 hover:scale-110 ${
                   image == currentThumbnail && "scale-110 border-brand border-4"
                 }`}
                 imgSrc={image}
