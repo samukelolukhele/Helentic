@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <Section>
       <Container className="flex-col gap-4">
-        <div className="text-6xl lg:text-[10rem]  ml-auto text-right">
+        <div className="text-6xl md:text-[8rem] lg:text-[10rem] lg:ml-auto text-right">
           <h1 className="">
             Elevate Your <br />
             <span>
@@ -20,7 +20,7 @@ const Hero = () => {
             </span>
           </h1>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between gap-4 md:gap-20 h-[600px] md:h-[550px]">
+        <div className="w-full flex flex-col md:flex-row justify-between gap-4 lg:gap-20 h-[600px] md:h-[550px]">
           <Image imgSrc="/images/hero-2.jpg" border />
           <Image imgSrc="/images/hero-1.jpg" border />
         </div>

@@ -7,7 +7,7 @@ import Product from "../../components/Product";
 const products = [
   {
     title: "Cuban Steel Chain",
-    price: 279.89,
+    price: 279,
     category: "Necklaces",
     thumbnail:
       "https://cc-west-usa.oss-accelerate.aliyuncs.com/f21f0155-3433-46a2-acd0-1dd526df9bf5.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
@@ -19,21 +19,20 @@ const products = [
     ],
   },
   {
-    title: "Ice Cross Chain",
-    price: 2132.89,
+    title: "Gold Cuban Bracelet",
+    price: 2132,
     category: "Necklaces",
     thumbnail:
-      "https://ae01.alicdn.com/kf/S191d4053e7fc46189153e1b81eca3998i/Punk-Luxury-Rhinestone-Big-Cross-Pendant-Cuban-Necklace-For-Women-Hip-Hop-Iced-Out-Cuban-Link.jpg_220x220.jpg_.webp",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/203202/291139512497.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     tags: [""],
     images: [
-      "https://ae01.alicdn.com/kf/Sbc0b172a5e614f08b360d9a137bb8875w/Punk-Luxury-Rhinestone-Big-Cross-Pendant-Cuban-Necklace-For-Women-Hip-Hop-Iced-Out-Cuban-Link.jpg_220x220.jpg_.webp",
-      "https://ae01.alicdn.com/kf/Sf1766fbb0d394ffcbbacdef0aef18b956/Punk-Luxury-Rhinestone-Big-Cross-Pendant-Cuban-Necklace-For-Women-Hip-Hop-Iced-Out-Cuban-Link.jpg_220x220.jpg_.webp",
-      "https://ae01.alicdn.com/kf/S095329cd154c4940b9c55cc462af8c620/Punk-Luxury-Rhinestone-Big-Cross-Pendant-Cuban-Necklace-For-Women-Hip-Hop-Iced-Out-Cuban-Link.jpg_220x220.jpg_.webp",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/203202/261474713179.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/203202/721402042323.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     ],
   },
   {
     title: "Byzantine Bracelet",
-    price: 642.13,
+    price: 642,
     category: "Bracelets",
     thumbnail:
       "https://cc-west-usa.oss-accelerate.aliyuncs.com/1622775416422.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
@@ -42,6 +41,43 @@ const products = [
       "https://ae01.alicdn.com/kf/S828719785c3146bcb6de5e41bcbe3065C/Vnox-Stylish-Byzantine-Chain-Bracelet-for-Men-Women-Boys-Waterproof-Stainless-Steel-Link-Wristband-4-5.jpg_220x220.jpg_.webp",
       "https://ae01.alicdn.com/kf/S2060922d10124af8b70de0579755b240i/Vnox-Stylish-Byzantine-Chain-Bracelet-for-Men-Women-Boys-Waterproof-Stainless-Steel-Link-Wristband-4-5.jpg_220x220.jpg_.webp",
       "https://ae01.alicdn.com/kf/S01dac046ae6a4599936df6ec1d82669dm/Vnox-Stylish-Byzantine-Chain-Bracelet-for-Men-Women-Boys-Waterproof-Stainless-Steel-Link-Wristband-4-5.jpg_220x220.jpg_.webp",
+    ],
+  },
+  {
+    title: "Rose Gold Cuban Chain",
+    price: 4119,
+    category: "Necklace",
+    thumbnail:
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/15569856/550169610426.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+    tags: [""],
+    images: [
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/15569856/3189966970561.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/15569856/1299335372240.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/15569856/5100503356080.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+    ],
+  },
+  {
+    title: "Gold Bead Necklace",
+    price: 542,
+    category: "Necklace",
+    thumbnail:
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/19805839-1523-451b-b63a-cd9641ccc09e.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+    tags: [""],
+    images: [
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/999e2dc8-e816-4db4-ba4b-98eea79b8619.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/4a9248fb-c579-4fc4-8ace-c128db901d5e.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/quick/product/ba8939a2-57f1-446a-acb0-8b3f1e53a241.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+    ],
+  },
+  {
+    title: "CZ Cross Pendant",
+    price: 311,
+    category: "Necklace",
+    thumbnail:
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/b877aa92-1e3a-422a-91f3-0744a62bba91.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+    tags: [""],
+    images: [
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/5aa2dc78-6cb9-4164-8a92-7578788feb84.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     ],
   },
 ];
@@ -57,7 +93,7 @@ const Shop = () => {
               Featured
             </IconText>
           </div>
-          <div className="grid grid-flow-col grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {products.map((product) => {
               return (
                 <Product
