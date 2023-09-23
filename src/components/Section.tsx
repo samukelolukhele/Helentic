@@ -4,8 +4,12 @@ type SProps = {
   children: ReactNode;
 };
 
-const Section = ({ children }: SProps) => {
-  return <section className="w-full relative py-8">{children}</section>;
-};
+const Section = React.forwardRef<HTMLElement, SProps>((props, ref) => {
+  return (
+    <section ref={ref} className="w-full relative py-8">
+      {props.children}
+    </section>
+  );
+});
 
 export default Section;

@@ -36,7 +36,7 @@ const Product = (props: PProps) => {
           images.map((image, key) => {
             return (
               <Image
-                className={`!flex-grow-0 w-[65px] h-[65px] cursor-pointer rounded-sm ease-in duration-300 hover:scale-110 ${
+                className={`!flex-grow-0 !w-[65px] !h-[65px] cursor-pointer rounded-sm ease-in duration-300 hover:scale-110 ${
                   image == currentThumbnail && "scale-110 border-brand border-4"
                 }`}
                 imgSrc={image}
