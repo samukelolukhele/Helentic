@@ -1,7 +1,7 @@
 import { Variants } from "framer-motion";
 
 export const pop: Variants = {
-  hidden: { opacity: 0.2, y: -20 },
+  hidden: { opacity: 0, y: -20 },
   visible: {
     opacity: 1,
     y: 0,
@@ -11,5 +11,9 @@ export const pop: Variants = {
 
 export const fadeIn: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { type: "tween", duration: 1.5 } },
+  visible: { opacity: 1, transition: { type: "tween", duration: 0.6 } },
+};
+
+export const parentStagger: Variants = {
+  visible: { transition: { staggerChildren: 0.4 } },
 };

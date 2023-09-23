@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import Card from "./Card";
 import Image from "./Image";
+import { motion as m } from "framer-motion";
 
-type PProps = {
+type Props = {
   title: string;
   thumbnail: string;
   images: string[];
   price: number;
   category: string;
   tags: string[];
+  addToCart?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const Product = (props: PProps) => {
-  const { title, thumbnail, images, price, category, tags } = props;
+const ProductComponent = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { title, thumbnail, images, price, category, tags, addToCart } = props;
   const [currentThumbnail, setCurrentThumbnail] = useState(thumbnail);
 
   function handleThumbnail(thumbnailChange: string) {
@@ -23,6 +25,7 @@ const Product = (props: PProps) => {
 
   return (
     <Card
+      ref={ref}
       className="!p-0 !pb-8 gap-8 text-center border-4 justify-between"
       border
     >
@@ -51,8 +54,16 @@ const Product = (props: PProps) => {
         <h4 className="font-header text-3xl">{title}</h4>
         <p className="text-xl font-semibold">R {price}</p>
       </div>
+      <button
+        onClick={addToCart}
+        className="py-2 px-8 border-b-2 border-white text-lg font-light duration-300 ease-in-out hover:bg-white hover:text-black"
+      >
+        <p>Quick add</p>
+      </button>
     </Card>
   );
-};
+});
+
+const Product = m(ProductComponent);
 
 export default Product;

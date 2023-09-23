@@ -1,14 +1,14 @@
 export const products = [
   {
     title: "Cuban Steel Chain",
-    price: 279,
+    price: 479,
     category: "Necklaces",
     thumbnail:
       "https://cc-west-usa.oss-accelerate.aliyuncs.com/f21f0155-3433-46a2-acd0-1dd526df9bf5.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     tags: [""],
     images: [
-      "https://ae01.alicdn.com/kf/Sa733bca0336a4593a2a4d6ca6844093f8/1-piece-Size-3-6mm-9mm-Men-s-Necklace-Stainless-Steel-Cuban-Link-Chain-Bracelet-Necklace.jpg_220x220.jpg_.webp",
-      "https://ae01.alicdn.com/kf/H048d0a574864415ebb085219260068f7m/1-piece-Size-3-6mm-9mm-Men-s-Necklace-Stainless-Steel-Cuban-Link-Chain-Bracelet-Necklace.jpg_220x220.jpg_.webp",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/84096724-863e-4ab6-87e9-01e7c1b76fd7.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/6a3971ea-bbe8-48a5-9321-1231b7e8fbc9.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     ],
   },
   {
@@ -24,16 +24,16 @@ export const products = [
     ],
   },
   {
-    title: "Byzantine Bracelet",
+    title: "Big Bad Wolf Bracelet",
     price: 642,
     category: "Bracelets",
     thumbnail:
-      "https://cc-west-usa.oss-accelerate.aliyuncs.com/1622775416422.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/1622185845785.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     tags: [""],
     images: [
-      "https://ae01.alicdn.com/kf/S828719785c3146bcb6de5e41bcbe3065C/Vnox-Stylish-Byzantine-Chain-Bracelet-for-Men-Women-Boys-Waterproof-Stainless-Steel-Link-Wristband-4-5.jpg_220x220.jpg_.webp",
-      "https://ae01.alicdn.com/kf/S2060922d10124af8b70de0579755b240i/Vnox-Stylish-Byzantine-Chain-Bracelet-for-Men-Women-Boys-Waterproof-Stainless-Steel-Link-Wristband-4-5.jpg_220x220.jpg_.webp",
-      "https://ae01.alicdn.com/kf/S01dac046ae6a4599936df6ec1d82669dm/Vnox-Stylish-Byzantine-Chain-Bracelet-for-Men-Women-Boys-Waterproof-Stainless-Steel-Link-Wristband-4-5.jpg_220x220.jpg_.webp",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/1622185845786.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/1622185845788.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
+      "https://cc-west-usa.oss-accelerate.aliyuncs.com/1622185845783.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     ],
   },
   {

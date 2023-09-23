@@ -4,8 +4,30 @@ import { BsCaretDown, BsFilter } from "react-icons/bs";
 import IconText from "../../components/IconText";
 import Product from "../../components/Product";
 import { products } from "../../utils/products";
+import { motion as m } from "framer-motion";
+import { fadeIn, parentStagger } from "../../utils/variants";
 
 const Shop = () => {
+  //! This function would not be used in a real application it is made for demo purposes only
+  function addToCart(
+    productId: number,
+    thumbnail: string,
+    title: string,
+    price: number
+  ) {
+    let products = [];
+    if (localStorage.getItem("products")) {
+      products = JSON.parse(localStorage.getItem("products") || "");
+    }
+    products.push({
+      productId: productId + 1,
+      thumbnail: thumbnail,
+      title: title,
+      price: price,
+    });
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+
   return (
     <Section>
       <Container>
@@ -16,20 +38,36 @@ const Shop = () => {
               Featured
             </IconText>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {products.map((product) => {
+          <m.div
+            variants={parentStagger}
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            {products.map((product, key) => {
               return (
                 <Product
+                  variants={fadeIn}
+                  initial="hidden"
+                  whileInView="visible"
                   title={product.title}
                   category={product.category}
                   thumbnail={product.thumbnail}
                   tags={product.tags}
                   images={product.images}
                   price={product.price}
+                  addToCart={() =>
+                    addToCart(
+                      key,
+                      product.thumbnail,
+                      product.title,
+                      product.price
+                    )
+                  }
+                  key={key}
                 />
               );
             })}
-          </div>
+          </m.div>
         </div>
       </Container>
     </Section>
