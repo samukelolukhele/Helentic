@@ -1,8 +1,9 @@
-import { BsCart3 } from "react-icons/bs";
+import { BsCart3, BsXCircleFill } from "react-icons/bs";
 import Container from "./Container";
 import { useEffect, useState } from "react";
 import Image from "./Image";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 
 type CartProps = {
   id: number;
@@ -27,7 +28,12 @@ const Navbar = () => {
   //   return () => window.removeEventListener("localstorage", () => {});
   // }, []);
 
-  const { cartItems } = useShoppingCart();
+  const {
+    cartItems,
+    removeFromCart,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+  } = useShoppingCart();
 
   return (
     <nav className="scroll z-50 bg-black lg:bg-background lg:relative py-4 md:py-8 w-full">
@@ -53,26 +59,45 @@ const Navbar = () => {
                 </p>
                 {cartItems.map((item: CartProps, key: number) => {
                   return (
-                    <div className="flex gap-4" key={key}>
+                    <div className="relative flex gap-4" key={key}>
+                      <button
+                        className="absolute right-0 top-0 duration-300 hover:scale-110 text-xl"
+                        onClick={() => removeFromCart(item.id)}
+                      >
+                        <BsXCircleFill />
+                      </button>
                       <Image
                         imgSrc={item.thumbnail}
-                        className="!w-[150px] !h-fit !aspect-square rounded"
+                        className="!w-[150px] !h-[150px] !flex-grow-0 rounded"
                       />
                       <div className="flex flex-col h-full items-center justify-center gap-4">
                         <p className="font-header text-lg w-3/4 mr-auto">
                           {item.title}
                         </p>
-                        <p className="w-full font-light text-xs text-gray-600">
-                          quantity: {item.quantity}
-                        </p>
+                        <div className="flex w-full text-3xl items-center justify-start gap-4">
+                          <CiSquareMinus
+                            className="cursor-pointer hover:scale-110 duration-300"
+                            onClick={() => decreaseCartQuantity(item.id)}
+                          />
+                          <p className=" font-light text-xs">{item.quantity}</p>
+                          <CiSquarePlus
+                            className="cursor-pointer hover:scale-110 duration-300"
+                            onClick={() =>
+                              increaseCartQuantity(
+                                item.id,
+                                item.thumbnail,
+                                item.title,
+                                item.price
+                              )
+                            }
+                          />
+                        </div>
                         <p className="w-full font-light">R {item.price}</p>
-
-                        {/* <div className="h-[1px] bg-white w-full"></div> */}
                       </div>
                     </div>
                   );
                 })}
-                <div className="w-full border-y-[1px] border-white py-2 flex justify-between gap-4 text-lg">
+                <div className="w-full border-t-[1px] border-white py-2 flex justify-between gap-4 text-lg">
                   <p className="font-logo">Subtotal</p>
                   <p className="font-bold">
                     R{" "}
@@ -88,9 +113,11 @@ const Navbar = () => {
                 </div>
               </div>
             )}
-            <button className="w-full bg-none border-white border-2 rounded py-4 hover:bg-white hover:text-black font-header text-lg">
-              Checkout
-            </button>
+            {cartItems.length > 0 && (
+              <button className="w-full bg-none border-white border-2 rounded py-4 hover:bg-white hover:text-black font-header text-lg">
+                Checkout
+              </button>
+            )}
           </div>
         </div>
       </Container>

@@ -96,7 +96,11 @@ export function ShoppingCartProvider({ children }: ProviderProps): ReactNode {
 
   function removeFromCart(id: number) {
     setCartItems((currItems: any) => {
-      return currItems.filter((item: CartProps) => item.id !== id);
+      const newCart = currItems.filter((item: CartProps) => item.id !== id);
+
+      saveToLocalStorage("cart_items", newCart);
+
+      return newCart;
     });
   }
 
