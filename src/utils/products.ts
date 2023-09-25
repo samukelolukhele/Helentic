@@ -1,5 +1,16 @@
-export const products = [
+export interface ProductModel {
+  id: number;
+  title: string;
+  price: number;
+  category: string;
+  thumbnail: string;
+  tags: string[];
+  images: string[];
+}
+
+export const products: ProductModel[] = [
   {
+    id: 1,
     title: "Cuban Steel Chain",
     price: 479,
     category: "Necklaces",
@@ -12,6 +23,7 @@ export const products = [
     ],
   },
   {
+    id: 2,
     title: "Gold Cuban Bracelet",
     price: 2132,
     category: "Necklaces",
@@ -24,6 +36,7 @@ export const products = [
     ],
   },
   {
+    id: 3,
     title: "Big Bad Wolf Bracelet",
     price: 642,
     category: "Bracelets",
@@ -37,6 +50,7 @@ export const products = [
     ],
   },
   {
+    id: 4,
     title: "Rose Gold Cuban Chain",
     price: 4119,
     category: "Necklace",
@@ -50,6 +64,7 @@ export const products = [
     ],
   },
   {
+    id: 5,
     title: "Gold Bead Necklace",
     price: 542,
     category: "Necklace",
@@ -63,6 +78,7 @@ export const products = [
     ],
   },
   {
+    id: 6,
     title: "CZ Cross Pendant",
     price: 311,
     category: "Necklace",

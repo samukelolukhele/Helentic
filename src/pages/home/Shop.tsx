@@ -6,27 +6,51 @@ import Product from "../../components/Product";
 import { products } from "../../utils/products";
 import { motion as m } from "framer-motion";
 import { fadeIn, parentStagger } from "../../utils/variants";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+
+type CartProps = {
+  productId: number;
+  thumbnail: string;
+  title: string;
+  price: number;
+  quantity: number;
+};
 
 const Shop = () => {
   //! This function would not be used in a real application it is made for demo purposes only
-  function addToCart(
-    productId: number,
-    thumbnail: string,
-    title: string,
-    price: number
-  ) {
-    let products = [];
-    if (localStorage.getItem("products")) {
-      products = JSON.parse(localStorage.getItem("products") || "");
-    }
-    products.push({
-      productId: productId + 1,
-      thumbnail: thumbnail,
-      title: title,
-      price: price,
-    });
-    localStorage.setItem("products", JSON.stringify(products));
-  }
+  // function addToCart(
+  //   productId: number,
+  //   thumbnail: string,
+  //   title: string,
+  //   price: number
+  // ) {
+  //   let products: CartProps[] = [];
+  //   if (localStorage.getItem("cart_items") !== null) {
+  //     products = JSON.parse(localStorage.getItem("cart_items") || "");
+  //   }
+
+  //   let quantity = 1;
+
+  //   products.push({
+  //     productId: productId + 1,
+  //     thumbnail: thumbnail,
+  //     title: title,
+  //     price: price,
+  //     quantity: quantity,
+  //   });
+  //   localStorage.setItem("cart_items", JSON.stringify(products));
+
+  //   //Value to be used for total value of the cart
+  //   localStorage.setItem(
+  //     "cart_total",
+  //     products
+  //       .map((p) => p.price)
+  //       .reduce((acc, p) => acc + p)
+  //       .toString()
+  //   );
+  // }
+
+  const { increaseCartQuantity } = useShoppingCart();
 
   return (
     <Section>
@@ -55,14 +79,15 @@ const Shop = () => {
                   tags={product.tags}
                   images={product.images}
                   price={product.price}
-                  addToCart={() =>
-                    addToCart(
-                      key,
+                  addToCart={() => {
+                    increaseCartQuantity(
+                      product.id,
                       product.thumbnail,
                       product.title,
                       product.price
-                    )
-                  }
+                    );
+                    window.dispatchEvent(new Event("localstorage"));
+                  }}
                   key={key}
                 />
               );
