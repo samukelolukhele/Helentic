@@ -79,7 +79,7 @@ export function ShoppingCartProvider({ children }: ProviderProps): ReactNode {
         saveToLocalStorage("cart_items", currItems);
       } else {
         return currItems.map((item: CartProps) => {
-          if (item.id === id) {
+          if (item.id === id && item.quantity > 1) {
             saveToLocalStorage("cart_items", {
               ...item,
               quantity: item.quantity - 1,
