@@ -1,7 +1,8 @@
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import Card from "./Card";
 import Image from "./Image";
 import { motion as m } from "framer-motion";
+import useChangeThumbnali from "../utils/hooks/useChangeThumbnali";
 
 type Props = {
   title: string;
@@ -15,13 +16,7 @@ type Props = {
 
 const ProductComponent = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { title, thumbnail, images, price, category, tags, addToCart } = props;
-  const [currentThumbnail, setCurrentThumbnail] = useState(thumbnail);
-
-  function handleThumbnail(thumbnailChange: string) {
-    return currentThumbnail === thumbnailChange
-      ? setCurrentThumbnail(thumbnail)
-      : setCurrentThumbnail(thumbnailChange);
-  }
+  const { handleThumbnail, currentThumbnail } = useChangeThumbnali(thumbnail);
 
   return (
     <Card

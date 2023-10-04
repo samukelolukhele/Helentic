@@ -18,11 +18,11 @@ const Image = forwardRef<HTMLDivElement, IProps>(
       <div
         ref={ref}
         onClick={onClick}
-        className={`h-full w-full flex-grow object-contain bg-cover bg-no-repeat ${
+        className={`${className} h-full w-full flex-grow object-contain bg-cover bg-no-repeat ${
           border && "border-8 border-brand"
-        } ${parallax && "bg-fixed"} ${className}`}
+        } ${parallax && "bg-fixed"} `}
         style={{
-          backgroundImage: `url(${imgSrc})`,
+          backgroundImage: `url(${imgSrc || "/images/hero-1.jpg"})`,
           backgroundPosition: "center center",
         }}
       />

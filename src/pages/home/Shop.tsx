@@ -17,39 +17,6 @@ type CartProps = {
 };
 
 const Shop = () => {
-  //! This function would not be used in a real application it is made for demo purposes only
-  // function addToCart(
-  //   productId: number,
-  //   thumbnail: string,
-  //   title: string,
-  //   price: number
-  // ) {
-  //   let products: CartProps[] = [];
-  //   if (localStorage.getItem("cart_items") !== null) {
-  //     products = JSON.parse(localStorage.getItem("cart_items") || "");
-  //   }
-
-  //   let quantity = 1;
-
-  //   products.push({
-  //     productId: productId + 1,
-  //     thumbnail: thumbnail,
-  //     title: title,
-  //     price: price,
-  //     quantity: quantity,
-  //   });
-  //   localStorage.setItem("cart_items", JSON.stringify(products));
-
-  //   //Value to be used for total value of the cart
-  //   localStorage.setItem(
-  //     "cart_total",
-  //     products
-  //       .map((p) => p.price)
-  //       .reduce((acc, p) => acc + p)
-  //       .toString()
-  //   );
-  // }
-
   const { increaseCartQuantity } = useShoppingCart();
 
   return (
