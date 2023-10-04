@@ -37,6 +37,8 @@ const Shop = () => {
             {products.map((product, key) => {
               return (
                 <Product
+                  link={`/shop/${product.id}`}
+                  categoryLink={`/shop/category/${product.category}`}
                   variants={fadeIn}
                   initial="hidden"
                   whileInView="visible"

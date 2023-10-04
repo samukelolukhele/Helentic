@@ -1,18 +1,8 @@
-import { BsCart3, BsX, BsXCircleFill } from "react-icons/bs";
+import { BsCart3 } from "react-icons/bs";
 import Container from "./Container";
-import Image from "./Image";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 import { useState } from "react";
 import Cart from "./Cart";
-
-type CartProps = {
-  id: number;
-  thumbnail: string;
-  title: string;
-  price: number;
-  quantity: number;
-};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

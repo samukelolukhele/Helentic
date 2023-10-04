@@ -17,6 +17,8 @@ const Shop = () => {
                 product;
               return (
                 <Product
+                  link={`/shop/${product.id}`}
+                  categoryLink={`/shop/category/${product.category}`}
                   thumbnail={thumbnail}
                   images={images}
                   title={title}

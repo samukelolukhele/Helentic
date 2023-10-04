@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import Card from "./Card";
+import { useNavigate } from "react-router-dom";
 import Image from "./Image";
 import { motion as m } from "framer-motion";
 import useChangeThumbnali from "../utils/hooks/useChangeThumbnali";
@@ -12,11 +13,25 @@ type Props = {
   category: string;
   tags: string[];
   addToCart?: React.MouseEventHandler<HTMLButtonElement>;
+  link: string;
+  categoryLink: string;
 };
 
 const ProductComponent = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { title, thumbnail, images, price, category, tags, addToCart } = props;
+  const {
+    title,
+    thumbnail,
+    images,
+    price,
+    category,
+    tags,
+    addToCart,
+    link,
+    categoryLink,
+  } = props;
   const { handleThumbnail, currentThumbnail } = useChangeThumbnali(thumbnail);
+
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -25,8 +40,9 @@ const ProductComponent = forwardRef<HTMLDivElement, Props>((props, ref) => {
       border
     >
       <Image
-        className="w-full flex-grow-0 !h-fit aspect-square"
+        className="w-full flex-grow-0 !h-fit aspect-square cursor-pointer"
         imgSrc={currentThumbnail}
+        onClick={() => navigate(link)}
       />
 
       <div className="flex items-center justify-center w-full gap-4">
@@ -45,8 +61,18 @@ const ProductComponent = forwardRef<HTMLDivElement, Props>((props, ref) => {
           })}
       </div>
       <div className="flex flex-col gap-4 px-16  w-full">
-        <h5 className="px-4 py-2 bg-brand font-logo">{category}</h5>
-        <h4 className="font-header text-3xl">{title}</h4>
+        <h5
+          className="px-4 py-2 bg-brand font-logo cursor-pointer"
+          onClick={() => navigate(categoryLink)}
+        >
+          {category}
+        </h5>
+        <h4
+          className="font-header text-3xl cursor-pointer hover:text-brand duration-300"
+          onClick={() => navigate(link)}
+        >
+          {title}
+        </h4>
         <p className="text-xl font-semibold">R {price}</p>
       </div>
       <button
