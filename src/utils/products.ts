@@ -2,7 +2,7 @@ export interface ProductModel {
   id: number;
   title: string;
   price: number;
-  category: string;
+  category: "Necklaces" | "Bracelets";
   thumbnail: string;
   tags: string[];
   images: string[];
@@ -26,7 +26,7 @@ export const products: ProductModel[] = [
     id: 2,
     title: "Gold Cuban Bracelet",
     price: 2132,
-    category: "Necklaces",
+    category: "Bracelets",
     thumbnail:
       "https://cc-west-usa.oss-accelerate.aliyuncs.com/203202/291139512497.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     tags: [""],
@@ -53,7 +53,7 @@ export const products: ProductModel[] = [
     id: 4,
     title: "Rose Gold Cuban Chain",
     price: 4119,
-    category: "Necklace",
+    category: "Necklaces",
     thumbnail:
       "https://cc-west-usa.oss-accelerate.aliyuncs.com/15569856/550169610426.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     tags: [""],
@@ -67,7 +67,7 @@ export const products: ProductModel[] = [
     id: 5,
     title: "Gold Bead Necklace",
     price: 542,
-    category: "Necklace",
+    category: "Necklaces",
     thumbnail:
       "https://cc-west-usa.oss-accelerate.aliyuncs.com/19805839-1523-451b-b63a-cd9641ccc09e.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     tags: [""],
@@ -81,7 +81,7 @@ export const products: ProductModel[] = [
     id: 6,
     title: "CZ Cross Pendant",
     price: 311,
-    category: "Necklace",
+    category: "Necklaces",
     thumbnail:
       "https://cc-west-usa.oss-accelerate.aliyuncs.com/b877aa92-1e3a-422a-91f3-0744a62bba91.jpg?x-oss-process=image/resize,m_pad,w_400,h_400",
     tags: [""],

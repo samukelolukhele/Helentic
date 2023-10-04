@@ -1,3 +1,4 @@
+import Categories from "./Categories";
 import Hero from "./Hero";
 import Shop from "./Shop";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Hero />
       <Shop />
+      <Categories />
     </>
   );
 };

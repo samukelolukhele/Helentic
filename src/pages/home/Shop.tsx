@@ -38,7 +38,7 @@ const Shop = () => {
               return (
                 <Product
                   link={`/shop/${product.id}`}
-                  categoryLink={`/shop/category/${product.category}`}
+                  categoryLink={`/shop/categories/${product.category}`}
                   variants={fadeIn}
                   initial="hidden"
                   whileInView="visible"
