@@ -19,9 +19,14 @@ const Shipping = () => {
         "We understand that our jewellery lovers span the globe, which is why we offer international shipping to bring our pieces to you, wherever you may be. Please note that international shipping times may vary depending on the destination country's customs procedures and regulations.",
     },
     {
-      title: "Dedicated Customer Support:",
+      title: "Dedicated Customer Support",
       content:
         "We're here for you every step of the way. If you have any questions or concerns about your order or shipping, our friendly customer support team is ready to assist you. Simply reach out to us, and we'll be delighted to help.",
+    },
+    {
+      title: "Return Policy",
+      content:
+        "If you're looking to return or exchange your order for whatever reason, we're here to help! We offer free returns within 30 days of purchase. You can return your product for store credit, a different product, or a refund to the original payment method.",
     },
   ];
   return (

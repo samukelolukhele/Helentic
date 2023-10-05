@@ -8,6 +8,7 @@ import CategoryPage from "./pages/category";
 import Checkout from "./pages/checkout";
 import Footer from "./components/Footer";
 import Shipping from "./pages/shipping";
+import FAQ from "./pages/faqs";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route element={<CategoryPage />} path="/shop/categories/:category" />
           <Route element={<Checkout />} path="/shop/checkout" />
           <Route element={<Shipping />} path="/support/shipping" />
+          <Route element={<FAQ />} path="/support/faq" />
         </Routes>
         <Footer />
       </ShoppingCartProvider>

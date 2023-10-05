@@ -10,11 +10,7 @@ const Footer = () => {
     },
     {
       text: "FAQs",
-      to: "/support/faqs",
-    },
-    {
-      text: "Materials & Care",
-      to: "/support/care",
+      to: "/support/faq",
     },
   ];
 
@@ -24,12 +20,12 @@ const Footer = () => {
       to: "/shop",
     },
     {
-      text: "Contact us",
-      to: "/support/contact",
+      text: "Home",
+      to: "/",
     },
     {
-      text: "About",
-      to: "/about",
+      text: "Contact us",
+      to: "/support/contact",
     },
   ];
 
@@ -98,7 +94,7 @@ const Footer = () => {
       </div>
       <div className="w-full py-4 bg-black flex flex-col md:flex-row justify-between items-center px-20 font-light">
         <p>&copy; 2023 Helentic. All rights reserved</p>
-        <p>Made & Designed by Samukelo L.</p>
+        <p>Coded by Samukelo L.</p>
       </div>
     </footer>
   );
