@@ -16,6 +16,7 @@ type ContextProps = {
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartItems: CartProps[];
+  cartTotal: string;
 };
 
 type CartProps = {
@@ -39,6 +40,13 @@ export function ShoppingCartProvider({ children }: ProviderProps): ReactNode {
   );
 
   saveToLocalStorage("cart_items", cartItems);
+
+  const cartTotal = new Intl.NumberFormat().format(
+    cartItems.reduce((total, cartItem) => {
+      const item = cartItems.find((i) => i.id === cartItem.id);
+      return total + (item?.price || 0) * cartItem.quantity;
+    }, 0)
+  );
 
   function getItemQuantity(id: number) {
     return cartItems.find((item: CartProps) => item.id == id)?.quantity || 0;
@@ -112,6 +120,7 @@ export function ShoppingCartProvider({ children }: ProviderProps): ReactNode {
         decreaseCartQuantity,
         removeFromCart,
         cartItems,
+        cartTotal,
       }}
     >
       {children}

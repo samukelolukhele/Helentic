@@ -17,7 +17,7 @@ const CategoryPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {products
               .filter((product) => product.category == category)
-              .map((product) => {
+              .map((product, key) => {
                 const { thumbnail, images, title, price, category, tags } =
                   product;
                 return (
@@ -30,6 +30,7 @@ const CategoryPage = () => {
                     price={price}
                     category={category}
                     tags={tags}
+                    key={key}
                   />
                 );
               })}

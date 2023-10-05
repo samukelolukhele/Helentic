@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Cart = ({ setIsOpen }: Props) => {
-  const { cartItems } = useShoppingCart();
+  const { cartItems, cartTotal } = useShoppingCart();
 
   return (
     <div className="absolute p-4 right-0 min-w-[330px] bg-black flex flex-col items-center gap-6 h-[450px] overflow-y-scroll">
@@ -25,15 +25,7 @@ const Cart = ({ setIsOpen }: Props) => {
           <CartItem />
           <div className="w-full border-t-[1px] border-white py-2 flex justify-between gap-4 text-lg">
             <p className="font-logo">Subtotal</p>
-            <p className="font-bold">
-              R{" "}
-              {new Intl.NumberFormat().format(
-                cartItems.reduce((total, cartItem) => {
-                  const item = cartItems.find((i) => i.id === cartItem.id);
-                  return total + (item?.price || 0) * cartItem.quantity;
-                }, 0)
-              )}
-            </p>
+            <p className="font-bold">R {cartTotal}</p>
           </div>
         </div>
       )}

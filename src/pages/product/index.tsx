@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { products } from "../../utils/products";
 import Section from "../../components/Section";
 import Container from "../../components/Container";
@@ -16,6 +16,7 @@ const ProductPage = () => {
     product?.thumbnail || ""
   );
   const { increaseCartQuantity } = useShoppingCart();
+  const navigate = useNavigate();
 
   return (
     <Section>
@@ -91,7 +92,10 @@ const ProductPage = () => {
             >
               Add to cart
             </button>
-            <button className="border-0 bg-brand text-white w-full py-2 rounded hover:scale-105 duration-300">
+            <button
+              className="border-0 bg-brand text-white w-full py-2 rounded hover:scale-105 duration-300"
+              onClick={() => navigate("/shop/checkout")}
+            >
               Buy now
             </button>
           </div>
