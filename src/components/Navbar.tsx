@@ -3,10 +3,12 @@ import Container from "./Container";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useState } from "react";
 import Cart from "./Cart";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { cartItems } = useShoppingCart();
+  const navigate = useNavigate();
 
   return (
     <nav className="scroll z-50 bg-black lg:bg-background lg:relative py-4 md:py-8 w-full">
@@ -18,7 +20,8 @@ const Navbar = () => {
           <img
             src="/Logo.svg"
             alt="logo"
-            className="w-[170px] md:w-[300px] object-contain h-fit m-auto text-sm lg:rot90"
+            className="w-[170px] md:w-[300px] object-contain h-fit m-auto text-sm lg:rot90 cursor-pointer"
+            onClick={() => navigate("/")}
           />
         </div>
         <div className="relative w-full flex justify-end gap-8 ">

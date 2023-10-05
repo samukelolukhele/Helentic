@@ -2,6 +2,7 @@ import React from "react";
 import { BsX } from "react-icons/bs";
 import CartItem from "./CartItem";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -9,9 +10,15 @@ type Props = {
 
 const Cart = ({ setIsOpen }: Props) => {
   const { cartItems, cartTotal } = useShoppingCart();
+  const navigate = useNavigate();
+
+  function handleCheckout() {
+    setIsOpen(false);
+    return navigate("/shop/checkout");
+  }
 
   return (
-    <div className="absolute p-4 right-0 min-w-[330px] bg-black flex flex-col items-center gap-6 h-[450px] overflow-y-scroll">
+    <div className="absolute z-50 p-4 right-0 min-w-[330px] bg-black flex flex-col items-center gap-6 h-[450px] overflow-y-scroll">
       <div className="flex w-full relative">
         <p className="text-center w-full font-logo">Your Cart</p>
         <BsX
@@ -30,7 +37,10 @@ const Cart = ({ setIsOpen }: Props) => {
         </div>
       )}
       {cartItems.length > 0 && (
-        <button className="w-full bg-none border-white border-2 rounded py-4 hover:bg-white hover:text-black font-header text-lg">
+        <button
+          className="w-full bg-none border-white border-2 rounded py-4 hover:bg-white hover:text-black font-header text-lg"
+          onClick={handleCheckout}
+        >
           Checkout
         </button>
       )}

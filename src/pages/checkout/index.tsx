@@ -13,7 +13,7 @@ const Checkout = () => {
   const { cartItems, cartTotal } = useShoppingCart();
   return (
     <Section>
-      <Container className="gap-12">
+      <Container className="gap-12 flex-col-reverse lg:flex-row">
         <form
           action=""
           className="font-light flex flex-col w-full lg:w-3/5 gap-12 p-10 bg-[#181818] rounded shadow-2xl"
@@ -106,7 +106,7 @@ const Checkout = () => {
             </div>
           </div>
         </form>
-        <div className="lg:flex flex-col p-10 flex-grow hidden bg-[#181818] rounded gap-4 shadow-lg h-fit">
+        <div className="flex flex-col p-10 flex-grow bg-[#181818] rounded gap-4 shadow-lg h-fit">
           <h1 className="font-logo">Products</h1>
           {cartItems.map((cartItem, key) => {
             return (
@@ -122,7 +122,7 @@ const Checkout = () => {
               </div>
             );
           })}
-          <div className="flex justify-between border-y border-gray-300 py-8 text-lg">
+          <div className="flex justify-between border-y border-gray-300 py-4 text-lg">
             <p className="font-semibold">Subtotal:</p>
             <p className="font-bold">R {cartTotal}</p>
           </div>

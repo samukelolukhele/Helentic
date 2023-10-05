@@ -12,7 +12,7 @@ const Shop = () => {
         <Container className="flex-col gap-10">
           <ShopFilters />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {products.map((product) => {
+            {products.map((product, key) => {
               const { thumbnail, images, title, price, category, tags } =
                 product;
               return (
@@ -25,6 +25,7 @@ const Shop = () => {
                   price={price}
                   category={category}
                   tags={tags}
+                  key={key}
                 />
               );
             })}

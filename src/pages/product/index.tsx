@@ -18,12 +18,23 @@ const ProductPage = () => {
   const { increaseCartQuantity } = useShoppingCart();
   const navigate = useNavigate();
 
+  function handleBuyNow() {
+    increaseCartQuantity(
+      Number(product?.id),
+      product?.thumbnail || "",
+      product?.title || "",
+      Number(product?.price)
+    );
+
+    return navigate("/shop/checkout");
+  }
+
   return (
     <Section>
-      <Container className="gap-20">
+      <Container className="gap-20 flex-col lg:flex-row">
         <div className="flex flex-col gap-8">
           <Image
-            className="flex-grow-0 h-[400px] w-[400px]"
+            className="flex-grow-0 !h-fit !w-full aspect-square lg:!h-[400px] lg:!w-[400px]"
             imgSrc={currentThumbnail}
           />
           <div className="flex gap-4">
@@ -94,7 +105,7 @@ const ProductPage = () => {
             </button>
             <button
               className="border-0 bg-brand text-white w-full py-2 rounded hover:scale-105 duration-300"
-              onClick={() => navigate("/shop/checkout")}
+              onClick={handleBuyNow}
             >
               Buy now
             </button>
