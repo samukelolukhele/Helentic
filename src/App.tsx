@@ -7,6 +7,7 @@ import ProductPage from "./pages/product";
 import CategoryPage from "./pages/category";
 import Checkout from "./pages/checkout";
 import Footer from "./components/Footer";
+import Shipping from "./pages/shipping";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route element={<ProductPage />} path="/shop/:id" />
           <Route element={<CategoryPage />} path="/shop/categories/:category" />
           <Route element={<Checkout />} path="/shop/checkout" />
+          <Route element={<Shipping />} path="/support/shipping" />
         </Routes>
         <Footer />
       </ShoppingCartProvider>

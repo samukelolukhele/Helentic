@@ -20,6 +20,10 @@ body {
   @apply font-base;
 }
 
+code {
+  @apply font-base;
+}
+
 h1 {
   @apply font-header;
 }

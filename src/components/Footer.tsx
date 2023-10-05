@@ -1,12 +1,12 @@
 import { BsFacebook, BsInstagram, BsSnapchat, BsYoutube } from "react-icons/bs";
 import Container from "./Container";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const customerServiceLinks = [
     {
       text: "Shipping & Returns",
-      to: "/support/shipping-policy",
+      to: "/support/shipping",
     },
     {
       text: "FAQs",
@@ -33,14 +33,12 @@ const Footer = () => {
     },
   ];
 
-  const navigate = useNavigate();
-
   return (
     <footer className="w-full">
       <div className="bg-[#151515] py-20 flex flex-col">
         <Container className="gap-20 flex-col md:flex-row">
           <div className="flex gap-20">
-            <div className="flex flex-col gap-3">
+            <code className="flex flex-col gap-3">
               <h1 className="mb-8 text-xl">Navigation</h1>
               {navigationLinks.map((link, key) => {
                 return (
@@ -49,8 +47,8 @@ const Footer = () => {
                   </Link>
                 );
               })}
-            </div>
-            <div className="flex flex-col gap-3">
+            </code>
+            <code className="flex flex-col gap-3">
               <h1 className="text-xl mb-8">Customer Service</h1>
               {customerServiceLinks.map((link, key) => {
                 return (
@@ -59,7 +57,7 @@ const Footer = () => {
                   </Link>
                 );
               })}
-            </div>
+            </code>
           </div>
           <div className="flex gap-20">
             <div className="flex flex-col gap-4">
