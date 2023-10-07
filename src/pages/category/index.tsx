@@ -1,6 +1,5 @@
 import Container from "../../components/Container";
 import Section from "../../components/Section";
-import ShopFilters from "../../components/ShopFilters";
 import { products } from "../../utils/products";
 import Product from "../../components/Product";
 import { useParams } from "react-router-dom";
@@ -13,7 +12,7 @@ const CategoryPage = () => {
       <Section>
         <Container className="flex-col gap-10">
           <div className="text-5xl font-logo">{category}</div>
-          <ShopFilters />
+          {/* <ShopFilters /> */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {products
               .filter((product) => product.category == category)

@@ -1,4 +1,3 @@
-import ShopFilters from "../../components/ShopFilters";
 import { products } from "../../utils/products";
 import Product from "../../components/Product";
 import Section from "../../components/Section";
@@ -9,7 +8,7 @@ const Shop = () => {
     <>
       <Section>
         <Container className="flex-col gap-10">
-          <ShopFilters />
+          {/* <ShopFilters /> */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {products.map((product, key) => {
               const { thumbnail, images, title, price, category, tags } =

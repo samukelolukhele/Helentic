@@ -1,7 +1,5 @@
 import Section from "../../components/Section";
 import Container from "../../components/Container";
-import { BsCaretDown, BsFilter } from "react-icons/bs";
-import IconText from "../../components/IconText";
 import Product from "../../components/Product";
 import { products } from "../../utils/products";
 import { motion as m } from "framer-motion";
@@ -15,12 +13,6 @@ const Shop = () => {
     <Section>
       <Container>
         <div className="w-full flex flex-col justify-between items-center gap-12">
-          <div className="w-full flex justify-between items-center gap-4">
-            <IconText Symbol={BsFilter}>Filter</IconText>
-            <IconText Symbol={BsCaretDown} className="flex-row-reverse">
-              Featured
-            </IconText>
-          </div>
           <m.div
             variants={parentStagger}
             animate="visible"
