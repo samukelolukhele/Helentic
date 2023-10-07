@@ -6,6 +6,10 @@ This is a demo e-commerce site built with React, TypeScript & Tailwind. It uses 
 
 React, TypeScript & TailwindCSS
 
+## Live Website
+
+- [Site](https://helentic.vercel.app/)
+
 ## Requirements
 
 - [NodeJS](https://nodejs.org/en/download/)
