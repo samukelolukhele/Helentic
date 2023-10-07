@@ -1,4 +1,3 @@
-import React from "react";
 import ShopFilters from "../../components/ShopFilters";
 import { products } from "../../utils/products";
 import Product from "../../components/Product";

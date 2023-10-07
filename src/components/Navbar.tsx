@@ -34,7 +34,7 @@ const Navbar = () => {
               <p>{cartItems.length}</p>
             </div>
           )}
-          {isOpen && <Cart setIsOpen={setIsOpen} />}
+          <Cart setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
       </Container>
     </nav>

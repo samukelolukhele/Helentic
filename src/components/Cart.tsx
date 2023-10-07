@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
 };
 
-const Cart = ({ setIsOpen }: Props) => {
+const Cart = ({ setIsOpen, isOpen }: Props) => {
   const { cartItems, cartTotal } = useShoppingCart();
   const navigate = useNavigate();
 
@@ -18,7 +19,13 @@ const Cart = ({ setIsOpen }: Props) => {
   }
 
   return (
-    <div className="absolute z-50 p-4 right-0 min-w-[330px] bg-black flex flex-col items-center gap-6 h-[450px] overflow-y-scroll">
+    <div
+      className={`absolute p-4 right-0 min-w-[330px] bg-black flex flex-col items-center gap-6 h-[450px] overflow-y-scroll ${
+        isOpen
+          ? "opacity-100 scale-y-100 z-50 translate-y-0"
+          : "opacity-0 scale-y-0 z-[-99] translate-y-[-200px]"
+      } duration-300 ease-in`}
+    >
       <div className="flex w-full relative">
         <p className="text-center w-full font-logo">Your Cart</p>
         <BsX
@@ -26,7 +33,7 @@ const Cart = ({ setIsOpen }: Props) => {
           onClick={() => setIsOpen(false)}
         />
       </div>
-      {cartItems.length != 0 && (
+      {cartItems.length != 0 ? (
         <div className="flex flex-col gap-4">
           <p className="py-2 border-t-[1px] border-white font-logo">Products</p>
           <CartItem />
@@ -35,6 +42,10 @@ const Cart = ({ setIsOpen }: Props) => {
             <p className="font-bold">R {cartTotal}</p>
           </div>
         </div>
+      ) : (
+        <p className="text-xl text-center font-thin my-auto">
+          Your cart is currently empty
+        </p>
       )}
       {cartItems.length > 0 && (
         <button
