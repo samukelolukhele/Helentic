@@ -58,7 +58,7 @@ export function ShoppingCartProvider({ children }: ProviderProps): ReactNode {
     title: string,
     price: number
   ) {
-    setCartItems((currItems: any) => {
+    setCartItems((currItems: CartProps[]) => {
       if (currItems.find((item: CartProps) => item.id == id) == null) {
         saveToLocalStorage("cart_items", [
           ...currItems,
@@ -72,7 +72,7 @@ export function ShoppingCartProvider({ children }: ProviderProps): ReactNode {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
           } else {
-            saveToLocalStorage("cart_items", item);
+            saveToLocalStorage<CartProps>("cart_items", item);
             return item;
           }
         });
@@ -81,32 +81,32 @@ export function ShoppingCartProvider({ children }: ProviderProps): ReactNode {
   }
 
   function decreaseCartQuantity(id: number) {
-    setCartItems((currItems: any) => {
-      if (currItems.find((item: CartProps) => item.id == id) == 1) {
+    setCartItems((currItems: CartProps[]) => {
+      if (currItems.find((item: CartProps) => item.id == id)) {
         currItems.filter((item: CartProps) => item.id !== id);
-        saveToLocalStorage("cart_items", currItems);
-      } else {
-        return currItems.map((item: CartProps) => {
-          if (item.id === id && item.quantity > 1) {
-            saveToLocalStorage("cart_items", {
-              ...item,
-              quantity: item.quantity - 1,
-            });
-            return { ...item, quantity: item.quantity - 1 };
-          } else {
-            saveToLocalStorage("cart_items", item);
-            return item;
-          }
-        });
+        saveToLocalStorage<CartProps[]>("cart_items", currItems);
       }
+
+      return currItems.map((item: CartProps) => {
+        if (item.id === id && item.quantity > 1) {
+          saveToLocalStorage<CartProps>("cart_items", {
+            ...item,
+            quantity: item.quantity - 1,
+          });
+          return { ...item, quantity: item.quantity - 1 };
+        } else {
+          saveToLocalStorage<CartProps>("cart_items", item);
+          return item;
+        }
+      });
     });
   }
 
   function removeFromCart(id: number) {
-    setCartItems((currItems: any) => {
+    setCartItems((currItems: CartProps[]) => {
       const newCart = currItems.filter((item: CartProps) => item.id !== id);
 
-      saveToLocalStorage("cart_items", newCart);
+      saveToLocalStorage<CartProps[]>("cart_items", newCart);
 
       return newCart;
     });

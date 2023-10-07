@@ -1,5 +1,5 @@
 const useLocalStorage = () => {
-  function saveToLocalStorage(containerName: string, data: any) {
+  function saveToLocalStorage<T>(containerName: string, data: T) {
     return localStorage.setItem(containerName, JSON.stringify(data));
   }
 

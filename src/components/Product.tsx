@@ -24,7 +24,7 @@ const ProductComponent = forwardRef<HTMLDivElement, Props>((props, ref) => {
     images,
     price,
     category,
-    tags,
+
     addToCart,
     link,
     categoryLink,

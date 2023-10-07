@@ -12,22 +12,6 @@ type CartItemsProps = {
   quantity: number;
 };
 
-type Props = {
-  cartItems: CartItemsProps[];
-  removeFromCart: (
-    id: number
-  ) => React.MouseEventHandler<HTMLButtonElement> | undefined;
-  increaseCartQuantity: (
-    id: number,
-    title: string,
-    thumbnail: string,
-    price: number
-  ) => React.MouseEventHandler<HTMLButtonElement> | undefined;
-  decreaseCartQuantity: (
-    id: number
-  ) => React.MouseEventHandler<HTMLButtonElement> | undefined;
-};
-
 const CartItem = (): ReactNode => {
   const {
     cartItems,

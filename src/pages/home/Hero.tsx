@@ -3,7 +3,7 @@ import { MotionImage } from "../../components/Image";
 import Section from "../../components/Section";
 import { BsArrowRightCircle } from "react-icons/bs";
 import { motion as m } from "framer-motion";
-import { fadeIn, pop } from "../../utils/variants";
+import { pop } from "../../utils/variants";
 import { useRef } from "react";
 import Reveal from "../../components/animations/Reveal";
 import { useNavigate } from "react-router-dom";

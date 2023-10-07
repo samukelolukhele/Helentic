@@ -9,7 +9,7 @@ const Checkout = () => {
   const initialState = {
     email: "",
   };
-  const { state, bind } = useForm(initialState);
+  const { bind } = useForm(initialState);
   const { cartItems, cartTotal } = useShoppingCart();
   return (
     <Section>

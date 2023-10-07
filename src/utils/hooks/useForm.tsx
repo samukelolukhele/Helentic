@@ -1,6 +1,6 @@
 import { ChangeEvent, useReducer } from "react";
 
-const useForm = (initialState: any) => {
+const useForm = (initialState: Record<string, unknown>) => {
   const reducer = (
     state: typeof initialState,
     payload: { field: string; value: string }
@@ -11,7 +11,7 @@ const useForm = (initialState: any) => {
     };
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-  const handleChange = (e: ChangeEvent<any>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({ field: e.target.name, value: e.target.value });
   };
   return {

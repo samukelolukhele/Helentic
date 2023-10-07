@@ -1,4 +1,3 @@
-import React from "react";
 import InfoPage from "../../components/InfoPage";
 import Accordion from "../../components/Accordion";
 

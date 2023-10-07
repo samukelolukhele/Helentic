@@ -8,14 +8,6 @@ import { motion as m } from "framer-motion";
 import { fadeIn, parentStagger } from "../../utils/variants";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 
-type CartProps = {
-  productId: number;
-  thumbnail: string;
-  title: string;
-  price: number;
-  quantity: number;
-};
-
 const Shop = () => {
   const { increaseCartQuantity } = useShoppingCart();
 
