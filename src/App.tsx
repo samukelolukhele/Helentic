@@ -23,6 +23,7 @@ function App() {
           <Route element={<Checkout />} path="/shop/checkout" />
           <Route element={<Shipping />} path="/support/shipping" />
           <Route element={<FAQ />} path="/support/faq" />
+          <Route element={<Home />} path="*" />
         </Routes>
         <Footer />
       </ShoppingCartProvider>
