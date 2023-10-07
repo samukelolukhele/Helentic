@@ -19,7 +19,7 @@ React, TypeScript & TailwindCSS
 Clone the project
 
 ```bash
-  git clone https://github.com/samukelolukhele/helentic
+  git clone https://github.com/samukelolukhele/Helentic
 ```
 
 Go to the project directory
