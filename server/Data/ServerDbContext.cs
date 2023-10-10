@@ -4,7 +4,7 @@ using server.Model;
 
 namespace server.Data
 {
-    class ServerDbContext : DbContext
+    public class ServerDbContext : DbContext
     {
         public ServerDbContext(DbContextOptions<ServerDbContext> options) : base(options) { }
 

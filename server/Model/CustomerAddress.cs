@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace server.Model
 {
-    class CustomerAddress : Base
+    public class CustomerAddress : Base
     {
         public string address { get; set; } = null!;
         public string? company { get; set; }

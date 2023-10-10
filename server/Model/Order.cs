@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace server.Model
 {
-    class Order : Base
+    public class Order : Base
     {
         [ForeignKey("Customer")]
         public Guid customer_id { get; set; }

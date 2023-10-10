@@ -1,6 +1,6 @@
 namespace server.Model
 {
-    class Category : Base
+    public class Category : Base
     {
         public string title { get; set; } = null!;
         public string description { get; set; } = null!;

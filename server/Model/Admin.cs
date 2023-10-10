@@ -1,6 +1,6 @@
 namespace server.Model
 {
-    class Admin : Base
+    public class Admin : Base
     {
         public string username { get; set; } = null!;
         public string email { get; set; } = null!;
