@@ -11,7 +11,7 @@ namespace server.Model
         public Guid product_id { get; set; }
         public Product Product { get; set; } = new Product();
         [ForeignKey("OrderStatus")]
-        public Guid orderstatus_id { get; set; }
+        public Guid order_statusid { get; set; }
         public OrderStatus order_status { get; set; } = new OrderStatus();
 
     }

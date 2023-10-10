@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace server.Model
 {
     class CustomerAddress : Base
@@ -8,5 +10,8 @@ namespace server.Model
         public int zip_code { get; set; }
         public string city { get; set; } = null!;
         public string province { get; set; } = null!;
+        [ForeignKey("Customer")]
+        public Guid customer_id { get; set; }
+        public Customer customer { get; set; } = null!;
     }
 }
