@@ -62,35 +62,98 @@ namespace server.Controllers
         [HttpPost]
         public async Task<ActionResult<Admin>> Post([FromBody] Admin admin)
         {
-            // try
-            // {
-            if (admin == null) return BadRequest();
-
-            if (_repo.GetByStringValue(admin.username) == null)
+            try
             {
-                ModelState.AddModelError("", "User already exists");
-                return StatusCode(422, ModelState);
+                if (admin == null) return BadRequest();
+
+                if (_repo.GetByStringValue(admin.username) != null)
+                {
+                    ModelState.AddModelError("", "User already exists");
+                    return StatusCode(422, ModelState);
+                }
+
+
+                if (await _repo.Insert(admin) == false)
+                {
+                    ModelState.AddModelError("", "Something went wrong while saving user");
+                    return StatusCode(500, ModelState);
+                }
+
+                _logger.LogInformation("Successfully created the new admin");
+
+
+                return NoContent();
             }
-
-
-            if (await _repo.Insert(admin) == false)
+            catch (Exception exception)
             {
+                _logger.LogError($"Something went wrong in the CreateAdmin action: {exception.Message}");
                 ModelState.AddModelError("", "Something went wrong while saving user");
-                return StatusCode(500, ModelState);
+
+                return StatusCode(500, $"Something went wrong creating the admin {exception.Message}");
             }
-
-            _logger.LogInformation("Successfully created the new admin");
-
-
-            return NoContent();
         }
-        //     catch (Exception exception)
-        //     {
-        //         _logger.LogError($"Something went wrong in the CreateAdmin action: {exception.Message}");
-        //         ModelState.AddModelError("", "Something went wrong while saving user");
 
-        //         return StatusCode(500, $"Something went wrong creating the admin {exception.Message}");
-        //     }
-        // }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Admin>> Put([FromBody] Admin admin, Guid id)
+        {
+            try
+            {
+                if (admin == null) return BadRequest();
+
+                if (await _repo.Get(id) == null)
+                {
+                    ModelState.AddModelError("", "User does not exist.");
+                    return StatusCode(404, ModelState);
+                }
+
+                if (await _repo.Update(admin) == false)
+                {
+                    ModelState.AddModelError("", "Something went wrong while updating the user");
+                    return StatusCode(500, ModelState);
+                }
+
+                _logger.LogInformation("Successfully updated the new admin");
+
+
+                return NoContent();
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError($"Something went wrong in the UpdateAdmin action: {exception.Message}");
+                ModelState.AddModelError("", "Something went wrong while updating user");
+
+                return StatusCode(500, $"Something went wrong updating the admin {exception.Message}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Admin>> Delete([FromBody] Admin admin, Guid id)
+        {
+            try
+            {
+                if (admin == null) return BadRequest();
+
+                if (await _repo.Get(id) == null)
+                {
+                    return StatusCode(404, "User does not exist.");
+                }
+
+                if (await _repo.Update(admin) == false)
+                {
+                    return StatusCode(500, "Something went wrong while deleting the user");
+                }
+
+                _logger.LogInformation("Successfully deleted the admin");
+
+
+                return NoContent();
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError($"Something went wrong in the DeleteAdmin action: {exception.Message}");
+
+                return StatusCode(500, $"Something went wrong creating the admin {exception.Message}");
+            }
+        }
     }
 }

@@ -17,9 +17,13 @@ builder.Services.AddLogging();
 // builder.Services.AddScoped<IRepository<Admin>, GenericRepository<Admin>>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ServerDbContext>(options => options.UseNpgsql(
+builder.Services.AddDbContext<ServerDbContext>(options =>
+{
+    options.UseNpgsql(
     builder.Configuration.GetConnectionString("DefaultConnection")
-));
+);
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+});
 
 var app = builder.Build();
 

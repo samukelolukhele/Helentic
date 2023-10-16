@@ -31,5 +31,12 @@ namespace server.Repository
             _context.Admins.Add(admin);
             return SaveChanges();
         }
+
+        public override Task<bool> Update(Admin admin)
+        {
+            _table.Update(admin);
+            _table.Entry(admin).Property(a => a.password).IsModified = false;
+            return SaveChanges();
+        }
     }
 }
