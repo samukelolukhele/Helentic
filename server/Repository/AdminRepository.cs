@@ -1,4 +1,5 @@
-using BCrypt.Net;
+using System.Security.Cryptography;
+using System.Text;
 using server.Data;
 using server.Interfaces;
 using server.Model;
@@ -7,16 +8,26 @@ namespace server.Repository
 {
     public class AdminRepository : GenericRepository<Admin>, IAdminRepository
     {
-        public ServerDbContext _context { get; }
 
-        public AdminRepository(ServerDbContext context)
+        public AdminRepository(ServerDbContext context) : base(context)
         {
-            _context = context;
         }
-        public Task<bool> CreateAdmin(Admin admin)
+
+        public string hashPassword(string password)
         {
+            var sha = SHA256.Create();
+            byte[] asByteArray = Encoding.UTF8.GetBytes(password);
+            byte[] hash = sha.ComputeHash(asByteArray);
+
+            return Convert.ToBase64String(hash);
+        }
+
+        public override Task<bool> Insert(Admin admin)
+        {
+            string hashedPassword = hashPassword(admin.password);
+
             admin.email = admin.email.Trim().ToLower();
-            admin.password = BCrypt.Net.BCrypt.HashPassword(admin.password);
+            admin.password = hashedPassword;
             _context.Admins.Add(admin);
             return SaveChanges();
         }

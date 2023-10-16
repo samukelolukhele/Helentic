@@ -1,11 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using UUIDNext;
 
 namespace server.Model
 {
     public class Base
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid id { get; set; } = Guid.NewGuid();
+        public Guid id { get; set; } = Uuid.NewDatabaseFriendly(Database.PostgreSql);
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
     }

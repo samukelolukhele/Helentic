@@ -11,8 +11,8 @@ namespace server.Repository
 {
     abstract public class GenericRepository<T> : IRepository<T> where T : class
     {
-        private readonly ServerDbContext _context;
-        private DbSet<T> _table;
+        internal readonly ServerDbContext _context;
+        internal DbSet<T> _table;
 
         public GenericRepository(ServerDbContext context)
         {
@@ -20,48 +20,42 @@ namespace server.Repository
             _table = _context.Set<T>();
         }
 
-        public GenericRepository()
-        {
-            this._context = null!;
-            this._table = null!;
 
+        public virtual async Task<IEnumerable<T>> GetAll()
+        {
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<ICollection<T>> GetAll(Expression<Func<T, bool>> match)
-        {
-            return await _table.Where(match).ToListAsync();
-        }
-
-        public Task<bool> Delete(T entity)
+        public virtual Task<bool> Delete(T entity)
         {
             _table.Remove(entity);
             return SaveChanges();
         }
 
-        public async Task<T?> Get(Guid id)
+        public virtual async Task<T?> Get(Guid id)
         {
 
             return await _table.FindAsync(id);
         }
 
-        public async Task<bool> Insert(T entity)
+        public virtual async Task<bool> Insert(T entity)
         {
             _table.Add(entity);
             return await SaveChanges();
         }
 
-        public async Task<bool> SaveChanges()
+        public virtual async Task<bool> SaveChanges()
         {
             return await _context.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
 
-        public async Task<bool> Update(T entity)
+        public virtual async Task<bool> Update(T entity)
         {
             _table.Update(entity);
             return await SaveChanges();
         }
 
-        public async Task<T?> GetByStringValue(string query)
+        public virtual async Task<T?> GetByStringValue(string query)
         {
             return await _table.FindAsync(query);
         }

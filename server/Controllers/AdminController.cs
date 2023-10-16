@@ -62,42 +62,35 @@ namespace server.Controllers
         [HttpPost]
         public async Task<ActionResult<Admin>> Post([FromBody] Admin admin)
         {
-            try
+            // try
+            // {
+            if (admin == null) return BadRequest();
+
+            if (_repo.GetByStringValue(admin.username) == null)
             {
-                if (admin == null) return BadRequest();
-
-                if (_repo.GetByStringValue(admin.username) == null)
-                {
-                    ModelState.AddModelError("", "User already exists");
-                    return StatusCode(422, ModelState);
-                }
-
-                if (await _repo.Insert(admin) == false)
-                {
-                    ModelState.AddModelError("", "Failed to save user");
-                    return StatusCode(500, ModelState);
-                }
-
-
-
-                if (await _repo.CreateAdmin(admin) == false)
-                {
-                    ModelState.AddModelError("", "Something went wrong while saving user");
-                    return StatusCode(500, ModelState);
-                }
-
-                _logger.LogInformation("Successfully created the new admin");
-
-
-                return NoContent();
+                ModelState.AddModelError("", "User already exists");
+                return StatusCode(422, ModelState);
             }
-            catch (Exception exception)
+
+
+            if (await _repo.Insert(admin) == false)
             {
-                _logger.LogError($"Something went wrong in the CreateAdmin action: {exception.Message}");
                 ModelState.AddModelError("", "Something went wrong while saving user");
-
-                return StatusCode(500, $"Something went wrong creating the admin {exception.Message}");
+                return StatusCode(500, ModelState);
             }
+
+            _logger.LogInformation("Successfully created the new admin");
+
+
+            return NoContent();
         }
+        //     catch (Exception exception)
+        //     {
+        //         _logger.LogError($"Something went wrong in the CreateAdmin action: {exception.Message}");
+        //         ModelState.AddModelError("", "Something went wrong while saving user");
+
+        //         return StatusCode(500, $"Something went wrong creating the admin {exception.Message}");
+        //     }
+        // }
     }
 }

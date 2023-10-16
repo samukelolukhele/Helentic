@@ -13,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Logging.AddConsole();
 builder.Logging.ClearProviders();
+builder.Services.AddLogging();
 // builder.Services.AddScoped<IRepository<Admin>, GenericRepository<Admin>>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddSwaggerGen();
