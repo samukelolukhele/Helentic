@@ -66,17 +66,20 @@ namespace server.Controllers
             {
                 if (admin == null) return BadRequest();
 
-                if (_repo.GetByStringValue(admin.username) != null)
+                if (_repo.GetByStringValue(a => admin.username == a.username) == null)
                 {
-                    ModelState.AddModelError("", "User already exists");
-                    return StatusCode(422, ModelState);
+                    return StatusCode(422, "User already exists.");
+                }
+
+                if (_repo.GetByStringValue(a => admin.email == a.email) != null)
+                {
+                    return StatusCode(422, "User already exists.");
                 }
 
 
                 if (await _repo.Insert(admin) == false)
                 {
-                    ModelState.AddModelError("", "Something went wrong while saving user");
-                    return StatusCode(500, ModelState);
+                    return StatusCode(500, "Something went wrong while saving user");
                 }
 
                 _logger.LogInformation("Successfully created the new admin");
@@ -87,20 +90,19 @@ namespace server.Controllers
             catch (Exception exception)
             {
                 _logger.LogError($"Something went wrong in the CreateAdmin action: {exception.Message}");
-                ModelState.AddModelError("", "Something went wrong while saving user");
 
                 return StatusCode(500, $"Something went wrong creating the admin {exception.Message}");
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Admin>> Put([FromBody] Admin admin, Guid id)
+        [HttpPut]
+        public async Task<ActionResult<Admin>> Put([FromBody] Admin admin)
         {
             try
             {
                 if (admin == null) return BadRequest();
 
-                if (await _repo.Get(id) == null)
+                if (await _repo.Get(admin.id) == null)
                 {
                     ModelState.AddModelError("", "User does not exist.");
                     return StatusCode(404, ModelState);
@@ -126,14 +128,14 @@ namespace server.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Admin>> Delete([FromBody] Admin admin, Guid id)
+        [HttpDelete]
+        public async Task<ActionResult<Admin>> Delete([FromBody] Admin admin)
         {
             try
             {
                 if (admin == null) return BadRequest();
 
-                if (await _repo.Get(id) == null)
+                if (await _repo.Get(admin.id) == null)
                 {
                     return StatusCode(404, "User does not exist.");
                 }

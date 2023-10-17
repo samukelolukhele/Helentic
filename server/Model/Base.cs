@@ -8,7 +8,7 @@ namespace server.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid id { get; set; } = Uuid.NewDatabaseFriendly(Database.PostgreSql);
+        public Guid id { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
     }

@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Interfaces;
+using server.Model;
 
 namespace server.Repository
 {
@@ -40,7 +43,7 @@ namespace server.Repository
 
         public virtual async Task<bool> Insert(T entity)
         {
-            _table.Add(entity);
+            await _table.AddAsync(entity);
             return await SaveChanges();
         }
 
@@ -52,12 +55,22 @@ namespace server.Repository
         public virtual async Task<bool> Update(T entity)
         {
             _table.Update(entity);
+            // _table.Entry(entity).Property(e => e.created_at).IsModified = false;
             return await SaveChanges();
         }
 
-        public virtual async Task<T?> GetByStringValue(string query)
+        public virtual async Task<T?> GetByStringValue(Expression<Func<T, bool>> predicate)
         {
-            return await _table.FindAsync(query);
+            return await _table.Where(predicate).FirstOrDefaultAsync();
+        }
+
+        public string hashPassword(string password)
+        {
+            var sha = SHA256.Create();
+            byte[] asByteArray = Encoding.UTF8.GetBytes(password);
+            byte[] hash = sha.ComputeHash(asByteArray);
+
+            return Convert.ToBase64String(hash);
         }
     }
 }
