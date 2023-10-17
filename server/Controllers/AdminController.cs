@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using server.Model;
 using server.Interfaces;
+using server.Dto;
 
 namespace server.Controllers
 {
@@ -60,7 +61,7 @@ namespace server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Admin>> Post([FromBody] Admin admin)
+        public async Task<ActionResult<Admin>> Post([FromBody] AdminDto admin)
         {
             try
             {
@@ -140,7 +141,7 @@ namespace server.Controllers
                     return StatusCode(404, "User does not exist.");
                 }
 
-                if (await _repo.Update(admin) == false)
+                if (await _repo.Delete(admin) == false)
                 {
                     return StatusCode(500, "Something went wrong while deleting the user");
                 }

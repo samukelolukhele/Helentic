@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using server.Dto;
 using server.Interfaces;
 using server.Model;
 
@@ -60,7 +61,7 @@ namespace server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Customer>> Post([FromBody] Customer Customer)
+        public async Task<ActionResult<Customer>> Post([FromBody] CustomerDto Customer)
         {
             try
             {
@@ -133,7 +134,7 @@ namespace server.Controllers
                     return StatusCode(404, "User does not exist.");
                 }
 
-                if (await _repo.Update(Customer) == false)
+                if (await _repo.Delete(Customer) == false)
                 {
                     return StatusCode(500, "Something went wrong while deleting the user");
                 }

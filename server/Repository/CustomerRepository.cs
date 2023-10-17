@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using server.Data;
+using server.Dto;
 using server.Interfaces;
 using server.Model;
 
 namespace server.Repository
 {
-    public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
+    public class CustomerRepository : GenericRepository<Customer, CustomerDto>, ICustomerRepository
     {
         public CustomerRepository(ServerDbContext context) : base(context) { }
 
 
-        public override Task<bool> Insert(Customer customer)
+        public override Task<bool> Insert(CustomerDto customer)
         {
             string hashedPassword = hashPassword(customer.password);
 
             customer.password = hashedPassword;
             customer.email = customer.email.Trim().ToLower();
-            _table.AddAsync(customer);
+            _context.Set<CustomerDto>().AddAsync(customer);
 
             return SaveChanges();
         }

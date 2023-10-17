@@ -12,7 +12,9 @@ using server.Model;
 
 namespace server.Repository
 {
-    abstract public class GenericRepository<T> : IRepository<T> where T : class
+    abstract public class GenericRepository<T, TDto> : IRepository<T, TDto>
+    where T : class
+    where TDto : class
     {
         internal readonly ServerDbContext _context;
         internal DbSet<T> _table;
@@ -29,10 +31,10 @@ namespace server.Repository
             return await _context.Set<T>().ToListAsync();
         }
 
-        public virtual Task<bool> Delete(T entity)
+        public virtual async Task<bool> Delete(T entity)
         {
             _table.Remove(entity);
-            return SaveChanges();
+            return await SaveChanges();
         }
 
         public virtual async Task<T?> Get(Guid id)
@@ -41,9 +43,9 @@ namespace server.Repository
             return await _table.FindAsync(id);
         }
 
-        public virtual async Task<bool> Insert(T entity)
+        public virtual async Task<bool> Insert(TDto entity)
         {
-            await _table.AddAsync(entity);
+            await _context.Set<TDto>().AddAsync(entity);
             return await SaveChanges();
         }
 
