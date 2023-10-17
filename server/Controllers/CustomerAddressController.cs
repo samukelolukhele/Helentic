@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using server.Dto;
 using server.Interfaces;
 using server.Model;
+using server.Repository;
 
 namespace server.Controllers
 {
@@ -16,10 +17,14 @@ namespace server.Controllers
         private readonly ILogger<CustomerAddress> _logger;
         private readonly ICustomerAddressRepository _repo;
 
+        // public CustomerRepository _customerRepository { get; }
+
         public CustomerAddressController(ILogger<CustomerAddress> logger, ICustomerAddressRepository repo)
         {
+            // _customerRepository = customerRepository;
             _logger = logger;
             _repo = repo;
+
         }
 
         [HttpGet]
@@ -67,7 +72,15 @@ namespace server.Controllers
             {
                 if (CustomerAddress == null) return BadRequest();
 
+                if (await _repo.CustomerExists(c => c.id == CustomerAddress.customer_id) == false)
+                {
+                    return StatusCode(422, "Customer does not exist.");
+                }
 
+                if (await _repo.Exists(c => c.customer_id == CustomerAddress.customer_id))
+                {
+                    return StatusCode(422, "Customer already has an address registered.");
+                }
 
                 if (await _repo.Insert(CustomerAddress) == false)
                 {
