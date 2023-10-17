@@ -22,6 +22,8 @@ namespace server.Controllers
             _repo = repo;
         }
 
+        //! Remove when finished with testing the api.
+
         [HttpGet]
         public async Task<ActionResult<IAsyncEnumerable<Admin>>> GetAllAsync()
         {
