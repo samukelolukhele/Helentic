@@ -61,20 +61,20 @@ namespace server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Admin>> Post([FromBody] AdminDto admin)
+        public async Task<ActionResult<Admin>> Post([FromBody] Admin admin)
         {
             try
             {
                 if (admin == null) return BadRequest();
 
-                if (_repo.GetByStringValue(a => admin.username == a.username) == null)
+                if (await _repo.Exists(a => a.username == admin.username))
                 {
-                    return StatusCode(422, "User already exists.");
+                    return StatusCode(422, "User with that username already exists.");
                 }
 
-                if (_repo.GetByStringValue(a => admin.email == a.email) != null)
+                if (await _repo.Exists(a => a.email == admin.email))
                 {
-                    return StatusCode(422, "User already exists.");
+                    return StatusCode(422, "User with that email already exists.");
                 }
 
 

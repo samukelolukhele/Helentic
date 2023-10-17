@@ -9,4 +9,5 @@ namespace server.Dto
         public string last_name { get; set; } = null!;
 
     }
+
 }

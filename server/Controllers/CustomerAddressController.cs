@@ -61,16 +61,12 @@ namespace server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CustomerAddress>> Post([FromBody] CustomerAddressDto CustomerAddress)
+        public async Task<ActionResult<CustomerAddress>> Post([FromBody] CustomerAddress CustomerAddress)
         {
             try
             {
                 if (CustomerAddress == null) return BadRequest();
 
-                // if (await _repo.GetByStringValue(c => CustomerAddress == c.email) != null)
-                // {
-                //     return StatusCode(422, "User already exists");
-                // }
 
 
                 if (await _repo.Insert(CustomerAddress) == false)

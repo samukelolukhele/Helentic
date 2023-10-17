@@ -13,7 +13,8 @@ namespace server.Interfaces
         Task<IEnumerable<T>> GetAll();
         Task<T?> Get(Guid id);
         Task<T?> GetByStringValue(Expression<Func<T, bool>> predicate);
-        Task<bool> Insert(TDto entity);
+        Task<bool> Exists(Expression<Func<T, bool>> predicate);
+        Task<bool> Insert(T entity);
         Task<bool> Update(T entity);
         Task<bool> Delete(T entity);
         Task<bool> SaveChanges();

@@ -12,13 +12,13 @@ namespace server.Repository
 
         public AdminRepository(ServerDbContext context) : base(context) { }
 
-        public override async Task<bool> Insert(AdminDto admin)
+        public override async Task<bool> Insert(Admin admin)
         {
             string hashedPassword = hashPassword(admin.password);
 
             admin.email = admin.email.Trim().ToLower();
             admin.password = hashedPassword;
-            await _context.Set<AdminDto>().AddAsync(admin);
+            await _context.Set<Admin>().AddAsync(admin);
             return await SaveChanges();
         }
 

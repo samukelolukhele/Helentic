@@ -43,9 +43,9 @@ namespace server.Repository
             return await _table.FindAsync(id);
         }
 
-        public virtual async Task<bool> Insert(TDto entity)
+        public virtual async Task<bool> Insert(T entity)
         {
-            await _context.Set<TDto>().AddAsync(entity);
+            await _context.Set<T>().AddAsync(entity);
             return await SaveChanges();
         }
 
@@ -64,6 +64,11 @@ namespace server.Repository
         public virtual async Task<T?> GetByStringValue(Expression<Func<T, bool>> predicate)
         {
             return await _table.Where(predicate).FirstOrDefaultAsync();
+        }
+
+        public virtual async Task<bool> Exists(Expression<Func<T, bool>> predicate)
+        {
+            return await _table.AnyAsync(predicate);
         }
 
         public string hashPassword(string password)

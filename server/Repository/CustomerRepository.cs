@@ -14,13 +14,13 @@ namespace server.Repository
         public CustomerRepository(ServerDbContext context) : base(context) { }
 
 
-        public override Task<bool> Insert(CustomerDto customer)
+        public override Task<bool> Insert(Customer customer)
         {
             string hashedPassword = hashPassword(customer.password);
 
             customer.password = hashedPassword;
             customer.email = customer.email.Trim().ToLower();
-            _context.Set<CustomerDto>().AddAsync(customer);
+            _context.Set<Customer>().AddAsync(customer);
 
             return SaveChanges();
         }
