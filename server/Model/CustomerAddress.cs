@@ -12,6 +12,5 @@ namespace server.Model
         public string province { get; set; } = null!;
         [ForeignKey("Customer")]
         public Guid customer_id { get; set; }
-        public Customer? customer { get; set; } = null!;
     }
 }

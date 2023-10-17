@@ -6,13 +6,13 @@ namespace server.Model
     {
         [ForeignKey("Customer")]
         public Guid customer_id { get; set; }
-        public Customer Customer { get; set; } = new Customer();
+        public virtual Customer Customer { get; set; } = new Customer();
         [ForeignKey("Product")]
         public Guid product_id { get; set; }
-        public Product Product { get; set; } = new Product();
+        public virtual Product Product { get; set; } = new Product();
         [ForeignKey("OrderStatus")]
         public Guid order_statusid { get; set; }
-        public OrderStatus order_status { get; set; } = new OrderStatus();
+        public virtual OrderStatus order_status { get; set; } = new OrderStatus();
 
     }
 }
