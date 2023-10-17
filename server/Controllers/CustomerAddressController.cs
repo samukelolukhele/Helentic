@@ -28,11 +28,11 @@ namespace server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IAsyncEnumerable<CustomerAddress>>> GetAll()
+        public ActionResult<IAsyncEnumerable<CustomerAddress>> GetAll()
         {
             try
             {
-                var CustomerAddress = await _repo.GetAll();
+                var CustomerAddress = _repo.GetAll().Result.Select(address => address.AsDto());
                 if (CustomerAddress == null) return NotFound();
                 return Ok(CustomerAddress);
             }
@@ -56,7 +56,7 @@ namespace server.Controllers
 
                 _logger.LogInformation("Successfully found the CustomerAddress");
 
-                return Ok(CustomerAddress);
+                return Ok(CustomerAddress.AsDto());
             }
             catch (Exception exception)
             {

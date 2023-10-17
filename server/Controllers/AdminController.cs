@@ -51,7 +51,7 @@ namespace server.Controllers
 
                 _logger.LogInformation("Successfully found the admin");
 
-                return Ok(admin);
+                return Ok(admin.AsDto());
             }
             catch (Exception exception)
             {

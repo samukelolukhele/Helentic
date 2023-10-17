@@ -40,7 +40,7 @@ namespace server.Repository
         public virtual async Task<T?> Get(Guid id)
         {
 
-            return await _table.FindAsync(id);
+            return await _context.FindAsync<T>(id);
         }
 
         public virtual async Task<bool> Insert(T entity)
@@ -57,7 +57,6 @@ namespace server.Repository
         public virtual async Task<bool> Update(T entity)
         {
             _table.Update(entity);
-            // _table.Entry(entity).Property(e => e.created_at).IsModified = false;
             return await SaveChanges();
         }
 

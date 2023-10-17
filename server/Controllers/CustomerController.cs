@@ -23,11 +23,11 @@ namespace server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IAsyncEnumerable<Customer>>> GetAll()
+        public ActionResult<IAsyncEnumerable<Customer>> GetAll()
         {
             try
             {
-                var Customer = await _repo.GetAll();
+                var Customer = _repo.GetAll().Result.Select(customer => customer.AsDto());
                 if (Customer == null) return NotFound();
                 return Ok(Customer);
             }
@@ -51,7 +51,7 @@ namespace server.Controllers
 
                 _logger.LogInformation("Successfully found the Customer");
 
-                return Ok(Customer);
+                return Ok(Customer.AsDto());
             }
             catch (Exception exception)
             {
