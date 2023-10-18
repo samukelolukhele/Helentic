@@ -18,6 +18,7 @@ namespace server.Interfaces
         Task<bool> Update(T entity);
         Task<bool> Delete(T entity);
         Task<bool> SaveChanges();
+        Task<int> Count();
         string hashPassword(string password);
 
     }

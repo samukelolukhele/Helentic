@@ -70,6 +70,11 @@ namespace server.Repository
             return await _table.AnyAsync(predicate);
         }
 
+        public virtual async Task<int> Count()
+        {
+            return await _table.CountAsync();
+        }
+
         public string hashPassword(string password)
         {
             var sha = SHA256.Create();

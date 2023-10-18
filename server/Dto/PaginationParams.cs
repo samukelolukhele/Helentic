@@ -9,5 +9,6 @@ namespace server.Dto
     {
         public int pages { get; set; }
         public int current_page { get; set; } = 1;
+        public int items_per_page { get; set; } = 10;
     }
 }

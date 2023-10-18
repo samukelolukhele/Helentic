@@ -23,13 +23,14 @@ namespace server.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IAsyncEnumerable<Customer>> GetAll([FromQuery] PaginationParams @params)
+        public async Task<ActionResult<IAsyncEnumerable<Customer>>> GetAll([FromQuery] PaginationParams @params)
         {
             try
             {
+                @params.pages = await _repo.Count() / 2;
                 var Customer = _repo.GetAll().Result
                 .OrderBy(customer => customer.created_at)
-                .Skip((@params.current_page - 1) * 10)
+                .Skip((@params.current_page - 1) * @params.items_per_page)
                 .Take(10)
                 .Select(customer => customer.AsDto());
 

@@ -38,7 +38,7 @@ namespace server.Controllers
             }
             catch (Exception exception)
             {
-                return StatusCode(500, $"Something went wrong fetching the CustomerAddresss {exception.Message}");
+                return StatusCode(500, $"Something went wrong fetching the Customer Addresss {exception.Message}");
             }
         }
 
@@ -54,7 +54,7 @@ namespace server.Controllers
                     return NotFound();
                 }
 
-                _logger.LogInformation("Successfully found the CustomerAddress");
+                _logger.LogInformation("Successfully found the Customer Address");
 
                 return Ok(CustomerAddress.AsDto());
             }
@@ -97,7 +97,7 @@ namespace server.Controllers
                 _logger.LogError($"Something went wrong in the CreateCustomerAddress action: {exception.Message}");
                 ModelState.AddModelError("", "Something went wrong while saving user");
 
-                return StatusCode(500, $"Something went wrong creating the CustomerAddress. {exception}");
+                return StatusCode(500, $"Something went wrong creating the CustomerAddress. {exception.Message}");
             }
         }
 
