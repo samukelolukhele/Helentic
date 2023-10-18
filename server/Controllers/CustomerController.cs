@@ -28,10 +28,11 @@ namespace server.Controllers
             try
             {
                 @params.pages = await _repo.Count() / 2;
+                @params.items_per_page = 10;
                 var Customer = _repo.GetAll().Result
                 .OrderBy(customer => customer.created_at)
                 .Skip((@params.current_page - 1) * @params.items_per_page)
-                .Take(10)
+                .Take(@params.items_per_page)
                 .Select(customer => customer.AsDto());
 
                 if (Customer == null) return NotFound();
