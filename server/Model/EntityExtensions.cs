@@ -53,5 +53,10 @@ namespace server.Model
         {
             return new TagDto(tag.title);
         }
+
+        public static OrderStatusDto AsDto(this OrderStatus OrderStatus)
+        {
+            return new OrderStatusDto(OrderStatus.title);
+        }
     }
 }
