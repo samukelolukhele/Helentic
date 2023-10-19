@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Interfaces;
-using server.Model;
 using server.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +20,7 @@ builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ServerDbContext>(options =>
 {

@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using server.Model;
 using server.Interfaces;
-using server.Dto;
 
 namespace server.Controllers
 {

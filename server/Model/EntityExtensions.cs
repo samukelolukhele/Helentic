@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using server.Dto;
 
 namespace server.Model
@@ -51,6 +47,11 @@ namespace server.Model
                 category.title,
                 category.description
             );
+        }
+
+        public static TagDto AsDto(this Tag tag)
+        {
+            return new TagDto(tag.title);
         }
     }
 }

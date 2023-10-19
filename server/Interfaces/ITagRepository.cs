@@ -3,7 +3,7 @@ using server.Model;
 
 namespace server.Interfaces
 {
-    public interface ICategoryRepository : IRepository<Category, CategoryDto>
+    public interface ITagRepository : IRepository<Tag, TagDto>
     {
 
     }
