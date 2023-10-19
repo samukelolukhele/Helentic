@@ -8,6 +8,7 @@ namespace server.Dto
         string email,
         string first_name,
         string last_name,
-        int? phone_number
+        int? phone_number,
+        CustomerAddress? Address
     );
 }

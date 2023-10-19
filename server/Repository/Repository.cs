@@ -13,7 +13,7 @@ using server.Model;
 namespace server.Repository
 {
     abstract public class GenericRepository<T, TDto> : IRepository<T, TDto>
-    where T : class
+    where T : Base
     where TDto : class
     {
         internal readonly ServerDbContext _context;
@@ -31,16 +31,16 @@ namespace server.Repository
             return await _context.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<bool> Delete(T entity)
-        {
-            _table.Remove(entity);
-            return await SaveChanges();
-        }
 
         public virtual async Task<T?> Get(Guid id)
         {
 
             return await _context.FindAsync<T>(id);
+        }
+
+        public virtual async Task<T?> GetByStringValue(Expression<Func<T, bool>> predicate)
+        {
+            return await _table.Where(predicate).FirstOrDefaultAsync();
         }
 
         public virtual async Task<bool> Insert(T entity)
@@ -49,20 +49,34 @@ namespace server.Repository
             return await SaveChanges();
         }
 
-        public virtual async Task<bool> SaveChanges()
-        {
-            return await _context.SaveChangesAsync().ConfigureAwait(false) > 0;
-        }
 
         public virtual async Task<bool> Update(T entity)
         {
-            _table.Update(entity);
+
+            var entry = await _table.FindAsync(entity.id);
+
+            if (entry == null) return false;
+
+            _table.Entry(entry).CurrentValues.SetValues(entity);
+
+
             return await SaveChanges();
         }
 
-        public virtual async Task<T?> GetByStringValue(Expression<Func<T, bool>> predicate)
+        public virtual async Task<bool> Delete(T entity)
         {
-            return await _table.Where(predicate).FirstOrDefaultAsync();
+            var entry = await _table.FindAsync(entity.id);
+
+            if (entry == null) return false;
+
+            _table.Entry(entry).State = EntityState.Deleted;
+
+            return await SaveChanges();
+        }
+
+        public virtual async Task<bool> SaveChanges()
+        {
+            return await _context.SaveChangesAsync().ConfigureAwait(false) > 0;
         }
 
         public virtual async Task<bool> Exists(Expression<Func<T, bool>> predicate)

@@ -20,6 +20,7 @@ builder.Services.AddLogging();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerAddressRepository, CustomerAddressRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ServerDbContext>(options =>
 {

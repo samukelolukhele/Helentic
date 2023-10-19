@@ -15,7 +15,8 @@ namespace server.Model
                 customer.first_name,
                 customer.last_name,
                 customer.email,
-                customer.phone_number
+                customer.phone_number,
+                Address: customer.customer_address
             );
         }
 
@@ -40,6 +41,15 @@ namespace server.Model
                 customerAddress.zip_code,
                 customerAddress.city,
                 customerAddress.province
+            );
+        }
+
+        public static CategoryDto AsDto(this Category category)
+        {
+            return new CategoryDto(
+                category.id,
+                category.title,
+                category.description
             );
         }
     }
