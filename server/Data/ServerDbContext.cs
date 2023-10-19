@@ -27,6 +27,15 @@ namespace server.Data
             .HasOne(c => c.customer_address)
             .WithOne()
             .HasForeignKey<CustomerAddress>(c => c.customer_id);
+
+            modelBuilder.Entity<Product>()
+            .HasOne(p => p.category)
+            .WithMany(c => c.products)
+            .HasForeignKey(c => c.category_id);
+
+            modelBuilder.Entity<Product>()
+            .HasMany(p => p.Tags)
+            .WithMany(t => t.Products);
         }
     }
 

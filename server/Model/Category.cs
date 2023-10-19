@@ -4,6 +4,6 @@ namespace server.Model
     {
         public string title { get; set; } = null!;
         public string description { get; set; } = null!;
-        public virtual ICollection<Product> products { get; set; } = new List<Product>();
+        public virtual ICollection<Product>? products { get; set; } = new List<Product>();
     }
 }

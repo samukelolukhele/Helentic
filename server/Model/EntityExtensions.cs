@@ -58,5 +58,18 @@ namespace server.Model
         {
             return new OrderStatusDto(OrderStatus.title);
         }
+
+        public static ProductDto AsDto(this Product Product)
+        {
+            return new ProductDto(
+                Product.title,
+                Product.description,
+                Product.price,
+                Product.category,
+                Product.thumbnail,
+                Product.images,
+                Product.Tags
+            );
+        }
     }
 }

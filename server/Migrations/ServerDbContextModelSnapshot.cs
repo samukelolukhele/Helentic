@@ -245,9 +245,6 @@ namespace server.Migrations
                     b.Property<Guid>("category_id")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("categoryid")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp with time zone");
 
@@ -275,7 +272,7 @@ namespace server.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("categoryid");
+                    b.HasIndex("category_id");
 
                     b.ToTable("Products");
                 });
@@ -356,7 +353,7 @@ namespace server.Migrations
                 {
                     b.HasOne("server.Model.Category", "category")
                         .WithMany("products")
-                        .HasForeignKey("categoryid")
+                        .HasForeignKey("category_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

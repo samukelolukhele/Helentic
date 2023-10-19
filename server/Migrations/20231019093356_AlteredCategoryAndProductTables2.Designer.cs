@@ -13,8 +13,8 @@ using server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(ServerDbContext))]
-    [Migration("20231016105328_AddedPasswordFieldToAdminsTable")]
-    partial class AddedPasswordFieldToAdminsTable
+    [Migration("20231019093356_AlteredCategoryAndProductTables2")]
+    partial class AlteredCategoryAndProductTables2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,21 +22,24 @@ namespace server.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("ProductTag", b =>
                 {
+                    b.Property<Guid>("Productsid")
+                        .HasColumnType("uuid");
+
                     b.Property<Guid>("Tagsid")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("productsid")
-                        .HasColumnType("uuid");
+                    b.HasKey("Productsid", "Tagsid");
 
-                    b.HasKey("Tagsid", "productsid");
-
-                    b.HasIndex("productsid");
+                    b.HasIndex("Tagsid");
 
                     b.ToTable("ProductTag");
                 });
@@ -128,15 +131,11 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("phone_number")
+                    b.Property<int?>("phone_number")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("updated_at")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("username")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.HasKey("id");
 
@@ -249,9 +248,6 @@ namespace server.Migrations
                     b.Property<Guid>("category_id")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("categoryid")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp with time zone");
 
@@ -279,7 +275,7 @@ namespace server.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("categoryid");
+                    b.HasIndex("category_id");
 
                     b.ToTable("Products");
                 });
@@ -292,9 +288,6 @@ namespace server.Migrations
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("product_id")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("title")
                         .IsRequired()
@@ -310,28 +303,26 @@ namespace server.Migrations
 
             modelBuilder.Entity("ProductTag", b =>
                 {
-                    b.HasOne("server.Model.Tag", null)
+                    b.HasOne("server.Model.Product", null)
                         .WithMany()
-                        .HasForeignKey("Tagsid")
+                        .HasForeignKey("Productsid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("server.Model.Product", null)
+                    b.HasOne("server.Model.Tag", null)
                         .WithMany()
-                        .HasForeignKey("productsid")
+                        .HasForeignKey("Tagsid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("server.Model.CustomerAddress", b =>
                 {
-                    b.HasOne("server.Model.Customer", "customer")
+                    b.HasOne("server.Model.Customer", null)
                         .WithOne("customer_address")
                         .HasForeignKey("server.Model.CustomerAddress", "customer_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("customer");
                 });
 
             modelBuilder.Entity("server.Model.Order", b =>
@@ -365,7 +356,7 @@ namespace server.Migrations
                 {
                     b.HasOne("server.Model.Category", "category")
                         .WithMany("products")
-                        .HasForeignKey("categoryid")
+                        .HasForeignKey("category_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

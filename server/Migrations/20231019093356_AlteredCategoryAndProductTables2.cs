@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace server.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AlteredCategoryAndProductTables2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,6 +19,7 @@ namespace server.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     username = table.Column<string>(type: "text", nullable: false),
                     email = table.Column<string>(type: "text", nullable: false),
+                    password = table.Column<string>(type: "text", nullable: false),
                     first_name = table.Column<string>(type: "text", nullable: false),
                     last_name = table.Column<string>(type: "text", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -50,11 +51,10 @@ namespace server.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     email = table.Column<string>(type: "text", nullable: false),
-                    username = table.Column<string>(type: "text", nullable: false),
                     password = table.Column<string>(type: "text", nullable: false),
                     first_name = table.Column<string>(type: "text", nullable: false),
                     last_name = table.Column<string>(type: "text", nullable: false),
-                    phone_number = table.Column<int>(type: "integer", nullable: false),
+                    phone_number = table.Column<int>(type: "integer", nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -83,7 +83,6 @@ namespace server.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     title = table.Column<string>(type: "text", nullable: false),
-                    product_id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -101,7 +100,6 @@ namespace server.Migrations
                     description = table.Column<string>(type: "text", nullable: false),
                     price = table.Column<int>(type: "integer", nullable: false),
                     category_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    categoryid = table.Column<Guid>(type: "uuid", nullable: false),
                     thumbnail = table.Column<string>(type: "text", nullable: false),
                     images = table.Column<List<string>>(type: "text[]", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -111,8 +109,8 @@ namespace server.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_categoryid",
-                        column: x => x.categoryid,
+                        name: "FK_Products_Categories_category_id",
+                        column: x => x.category_id,
                         principalTable: "Categories",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -182,15 +180,15 @@ namespace server.Migrations
                 name: "ProductTag",
                 columns: table => new
                 {
-                    Tagsid = table.Column<Guid>(type: "uuid", nullable: false),
-                    productsid = table.Column<Guid>(type: "uuid", nullable: false)
+                    Productsid = table.Column<Guid>(type: "uuid", nullable: false),
+                    Tagsid = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductTag", x => new { x.Tagsid, x.productsid });
+                    table.PrimaryKey("PK_ProductTag", x => new { x.Productsid, x.Tagsid });
                     table.ForeignKey(
-                        name: "FK_ProductTag_Products_productsid",
-                        column: x => x.productsid,
+                        name: "FK_ProductTag_Products_Productsid",
+                        column: x => x.Productsid,
                         principalTable: "Products",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -224,14 +222,14 @@ namespace server.Migrations
                 column: "product_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_categoryid",
+                name: "IX_Products_category_id",
                 table: "Products",
-                column: "categoryid");
+                column: "category_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductTag_productsid",
+                name: "IX_ProductTag_Tagsid",
                 table: "ProductTag",
-                column: "productsid");
+                column: "Tagsid");
         }
 
         /// <inheritdoc />
